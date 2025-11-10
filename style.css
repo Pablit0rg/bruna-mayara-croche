@@ -1,0 +1,271 @@
+/* ======== 1. CONFIGURAÇÕES GLOBAIS E VARIÁVEIS ======== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --color-grad-1-red: #F7706D;
+    --color-grad-2-orange: #F89261;
+    --color-grad-3-yellow: #FBBD56;
+    --color-cta: var(--color-grad-3-yellow); 
+    --color-primary-accent: var(--color-grad-1-red); 
+    
+    --color-white: #FFFFFF;
+    --color-light-text: #f9f9f9;
+    --color-dark-text: #333;
+    --color-dark-brown: #6D4C41; /* Tom de café/terra */
+
+    --navbar-height: 60px; /* Slim */
+}
+
+/* Reset básico */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4; 
+    color: var(--color-dark-text);
+    overflow-x: hidden; 
+}
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+img, svg { max-width: 100%; display: block; } 
+a { text-decoration: none; color: inherit; }
+
+/* ======== 2. ESTILOS DA NAVBAR (MOBILE-FIRST) ======== */
+.navbar {
+    background: var(--color-white);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    height: var(--navbar-height); 
+    position: fixed; 
+    width: 100%;
+    top: 0;
+    z-index: 1000; 
+}
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+.logo-texto {
+    font-weight: 700;
+    font-size: 1.1rem;
+    line-height: 1.2;
+    color: var(--color-primary-accent); 
+}
+
+/* --- Menu de Navegação (Mobile com Transição) --- */
+.nav-links {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    position: fixed;
+    top: var(--navbar-height); 
+    right: 0;
+    transform: translateX(100%); 
+    width: 100%; 
+    height: calc(100vh - var(--navbar-height)); 
+    transition: transform 0.5s ease-in-out; 
+    background-image: linear-gradient( 135deg, var(--color-grad-1-red) 10%, var(--color-grad-2-orange) 50%, var(--color-grad-3-yellow) 90% );
+    color: var(--color-light-text);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.menu-hamburger {
+    display: block; 
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-dark-text);
+    z-index: 1001; 
+}
+.nav-links.active {
+    transform: translateX(0); 
+}
+
+/* Efeito Underline (Global) */
+.nav-links a {
+    position: relative; 
+}
+.nav-links a::after {
+    content: ''; 
+    position: absolute;
+    bottom: -5px; 
+    left: 0;
+    width: 0; 
+    height: 2px;
+    background-color: var(--color-white); /* Cor Padrão (Mobile) */
+    transition: width 0.3s ease-out; 
+}
+.nav-links a:hover::after {
+    width: 100%; 
+}
+
+/* ======== 3. ESTILOS DA SEÇÃO HERO (MOBILE-FIRST) ======== */
+.hero {
+    background-color: var(--color-grad-1-red); 
+    background-image: linear-gradient( 135deg, var(--color-grad-1-red) 10%, var(--color-grad-2-orange) 50%, var(--color-grad-3-yellow) 90% );
+    color: var(--color-light-text);
+    padding-top: calc(var(--navbar-height) + 40px); 
+    padding-bottom: 20px; /* Mais curto */
+    min-height: 90vh; 
+    display: flex;
+    align-items: center;
+}
+.hero .container {
+    display: flex;
+    flex-direction: column; 
+    text-align: center;
+    align-items: center;
+}
+.hero-text h1 { font-size: 2.8rem; font-weight: 700; line-height: 1.2; margin-bottom: 1rem; }
+.hero-text p { font-size: 1.1rem; margin-bottom: 2rem; }
+
+.cta-button {
+    background: var(--color-cta); 
+    color: var(--color-dark-brown); /* Texto quente */
+    padding: 1rem 2rem;
+    border-radius: 50px; 
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    transition: box-shadow 0.4s ease-out, filter 0.4s ease-out;
+}
+
+.cta-button:hover {
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 
+                0 0 20px var(--color-cta),      
+                0 0 35px var(--color-grad-2-orange); 
+    filter: brightness(115%); 
+}
+
+.hero-image { margin-top: 2rem; }
+
+.hero-image img {
+    width: 340px; /* Círculo maior */
+    height: 340px; /* Círculo maior */
+    border-radius: 50%; 
+    object-fit: cover; 
+    object-position: left center; /* Versão anterior (v1.18) */
+    border: 5px solid var(--color-white);
+    box-shadow: 
+        inset 5px 5px 15px rgba(255, 255, 255, 0.4),
+        0 5px 20px rgba(0,0,0,0.2);
+    outline: 1px solid transparent; 
+}
+
+/* ======== 4. ESTILOS DO RODAPÉ (MOBILE-FIRST) ======== */
+footer {
+    background: var(--color-white); 
+    color: var(--color-dark-text); 
+    text-align: center;
+    padding: 1rem 0; /* Mais "espremido" */
+    font-size: 0.9rem;
+    border-top: 1px solid #eee; 
+}
+footer p { margin-bottom: 0.5rem; }
+
+.developed-by {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.35rem; 
+}
+.developed-by a { 
+    color: var(--color-primary-accent); 
+    font-weight: 600; 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 0.35rem; 
+}
+
+/* ===== ATUALIZAÇÃO: ÍCONE GRADIENTE (NÃO DEFORMA) ===== */
+.developed-by .instagram-icon {
+    /* 1. Define o tamanho (harmônico com o texto) */
+    font-size: 1.2rem;
+    line-height: 1;
+
+    /* 2. O gradiente oficial do Instagram */
+    background: radial-gradient(circle at 30% 107%, 
+                                #FED977 0%, 
+                                #F58529 30%, 
+                                #D6249F 60%, 
+                                #6554C0 90%);
+    
+    /* 3. A mágica: "corta" o fundo no formato do ícone */
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    /* 4. Deixa o ícone transparente para o fundo aparecer */
+    color: transparent;
+}
+
+
+/* ======== 5. MEDIA QUERIES (DESKTOP) ======== */
+@media (min-width: 768px) {
+    body {
+        overflow-x: auto;
+    }
+    .container { padding: 0 40px; }
+
+    /* --- Navbar Desktop --- */
+    .menu-hamburger { display: none; }
+    .nav-links {
+        display: flex; 
+        gap: 1.5rem; 
+        position: static;
+        flex-direction: row;
+        width: auto;
+        height: auto;
+        background-image: none;
+        color: var(--color-dark-text);
+        font-size: 1rem;
+        transform: translateX(0);
+        transition: none;
+    }
+    .nav-links a { 
+        font-weight: 600; 
+        color: var(--color-dark-text); 
+        transition: color 0.3s ease; 
+        display: inline; 
+    }
+    .nav-links a:hover { 
+        color: var(--color-primary-accent); 
+    }
+    .nav-links a::after {
+        background-color: var(--color-primary-accent); /* Cor da linha (Desktop) */
+    }
+
+    /* --- Hero Desktop --- */
+    .hero { 
+        min-height: 85vh; 
+        padding-top: var(--navbar-height); 
+        padding-bottom: 40px; /* Restaura o padding */
+    } 
+    .hero .container { flex-direction: row; justify-content: space-between; text-align: left; }
+    .hero-text { flex: 1; max-width: 50%; }
+    .hero-text h1 { font-size: 3.8rem; }
+    .hero-image {
+        flex: 1;
+        margin-top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+    }
+    .hero-image img { 
+        width: 380px; 
+        height: 380px; 
+        object-position: left center; /* Versão anterior (v1.18) */
+    }
+
+    /* --- Footer Desktop --- */
+    footer {
+        padding: 1.25rem 0; /* Restaura o padding */
+    }
+    footer .container { display: flex; justify-content: space-between; align-items: center; }
+    footer p { margin-bottom: 0; }
+    
+    .developed-by {
+       display: inline; 
+    }
+}
